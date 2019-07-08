@@ -2,21 +2,23 @@ from google_images_download import google_images_download
 
 response = google_images_download.googleimagesdownload()
 
-chrome = '/Users/davidnguyen/PycharmProjects/image_download/chromedriver'
+#chrome = '/Users/davidnguyen/PycharmProjects/image_download/chromedriver'
+chrome = 'C:\\Users\\Davie\\PycharmProjects\\image_download\\chromedriver.exe'
 
-text_file = open('rabbit_list.txt', 'r')
+text_file = open('flowers.txt', 'r')
 lines = text_file.readlines()
 lines = [item.replace('\n', '') for item in lines]
-print(lines)
+lines = [item.replace("'", '') for item in lines]
 print(len(lines))
 
 
 def image_download(names):
     arguments = {'keywords': names,
-                 'suffix_keywords': 'rabbit',
+                 'suffix_keywords': 'flower',
                  'limit': 1000,
                  # 'print_urls': True,
                  # 'format': 'jpg',
+                 # 'silent_mode': True,
                  'chromedriver': chrome,
                  }
     paths = response.download(arguments)
@@ -28,9 +30,9 @@ def mp_handler(function, iterable):
     import multiprocessing as mp
 
     starttime = time.time()
-    p = mp.Pool(4)
+    p = mp.Pool(7)
 
-    p.map(function,iterable)
+    p.map(function, iterable)
     p.close()
     p.join()
 
