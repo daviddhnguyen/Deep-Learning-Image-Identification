@@ -57,7 +57,7 @@ def split_data(SOURCE, TRAINING, TESTING, SPLIT_SIZE):
                 files.append(filename)
             else:
                 print(filename + " is zero length, so ignoring.")
-        except (IOError, SyntaxError, OSError) as e:
+        except (IOError, SyntaxError, OSError):
             # os.remove(filename)
             print('Bad file, skip:', filename)  # print out the names of corrupt files
 
